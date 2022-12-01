@@ -1,14 +1,13 @@
-module CommonParsers
-  ( Parser,
-    runParser,
-    nameP,
-    constP,
-    numberP,
-    boolP,
-    brace,
-    chainL1,
-  )
-where
+module Tools.CommonParsers (
+  Parser,
+  runParser,
+  nameP,
+  constP,
+  numberP,
+  boolP,
+  brace,
+  chainL1,
+) where
 
 import Control.Applicative ((<|>))
 import Data.Functor (void)
@@ -46,8 +45,8 @@ boolP =
   P.label "boolean" $
     P.hidden $
       P.choice
-        [ True <$ PC.string "true",
-          False <$ PC.string "false"
+        [ True <$ PC.string "true"
+        , False <$ PC.string "false"
         ]
 
 brace :: Parser p -> Parser p
@@ -61,10 +60,10 @@ chainL1 :: Parser (a -> a -> a) -> Parser a -> Parser a
 chainL1 pOp pVal = do
   first <- pVal
   more first
-  where
-    more acc =
-      do
-        op <- pOp
-        val <- pVal
-        more (op acc val)
-        <|> pure acc
+ where
+  more acc =
+    do
+      op <- pOp
+      val <- pVal
+      more (op acc val)
+      <|> pure acc

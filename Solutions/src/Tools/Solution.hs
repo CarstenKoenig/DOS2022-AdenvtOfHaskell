@@ -1,10 +1,10 @@
--- Description : Advent of Code - 2022 / Tag 1
+-- Description : Advent of Code - 2015 / Tag 1
 --
--- Siehe [Problestellung](https://adventofcode.com/2022/day/1)
-module Y2022.Day1.Solution where
+-- Siehe [Problestellung](https://adventofcode.com/2015/day/1)
+module Tools.Solution where
 
 yearNr :: Int
-yearNr = 2022
+yearNr = 2015
 
 dayNr :: Int
 dayNr = 1

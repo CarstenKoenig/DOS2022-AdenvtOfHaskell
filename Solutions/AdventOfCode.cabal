@@ -5,7 +5,7 @@ cabal-version:      2.4
 --   http://haskell.org/cabal/users-guide/
 -- 
 -- The name of the package.
-name:               AdventOfCode
+name:               AdventOfHaskell
 
 -- The package version.
 -- See the Haskell package versioning policy (PVP) for standards
@@ -47,15 +47,15 @@ category:           fun
 -- Extra files to be distributed with the package, such as examples or a README.
 extra-source-files: CHANGELOG.md
 
-executable AdventOfCode-Template
+executable AdventOfHaskell
     -- .hs or .lhs file containing the Main module.
     main-is:          Main.hs
 
     -- Modules included in this executable, other than Main.
-    other-modules:    CommonParsers,
-                      Coords,
-                      SolutionTemplate,
-                      Y2022.Day1.Solution
+    other-modules:    Tools.CommonParsers,
+                      Tools.Coords,
+                      Tools.Solution,
+                      Y2015.Day1.Solution
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:

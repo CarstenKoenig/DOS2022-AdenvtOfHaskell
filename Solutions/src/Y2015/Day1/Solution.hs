@@ -1,7 +1,7 @@
 -- Description : Advent of Code - 2015 / Tag 1
 --
 -- Siehe [Problestellung](https://adventofcode.com/2015/day/1)
-module SolutionTemplate where
+module Y2015.Day1.Solution where
 
 yearNr :: Int
 yearNr = 2015
