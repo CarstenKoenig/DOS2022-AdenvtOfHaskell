@@ -55,7 +55,8 @@ executable AdventOfHaskell
     other-modules:    Tools.CommonParsers,
                       Tools.Coords,
                       Tools.Solution,
-                      Y2015.Day1.Solution
+                      Y2015.Day1.Solution,
+                      Y2015.Day17.Solution
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
