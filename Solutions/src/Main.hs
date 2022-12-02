@@ -1,6 +1,6 @@
 module Main where
 
-import Y2015.Day1.Solution (run)
+import qualified Y2015.Day1.Solution as D1
 
 main :: IO ()
-main = run
+main = D1.run
