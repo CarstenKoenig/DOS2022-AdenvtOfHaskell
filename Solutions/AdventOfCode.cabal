@@ -57,7 +57,8 @@ executable AdventOfHaskell
                       Tools.Solution,
                       Y2015.Day1.Solution,
                       Y2015.Day17.Solution,
-                      Y2016.Day13.Solution
+                      Y2016.Day13.Solution,
+                      Y2017.Day12.Solution
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:

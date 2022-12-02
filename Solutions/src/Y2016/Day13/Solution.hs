@@ -34,7 +34,7 @@ part1 :: Input -> Int
 part1 inp = nrStepsTo inp (31, 39)
 
 part2 :: Input -> Int
-part2 _ = 0
+part2 inp = Set.size $ placesInSteps inp 50
 
 -- >>> isOpen 10 (0,0)
 -- True
@@ -83,7 +83,22 @@ nrStepsTo inp goal = go (Set.singleton start) [(0, start)]
           )
 
 placesInSteps :: Input -> Step -> Set Coord
-placesInSteps inp maxSteps = undefined
+placesInSteps inp maxSteps =
+  go (Set.singleton start) [(0, start)]
+ where
+  go :: Set Coord -> [(Step, Coord)] -> Set Coord
+  go vistied [] = vistied
+  go visited ((step, coord) : rest)
+    | step > maxSteps = go visited rest
+    | otherwise =
+        go
+          (Set.insert coord visited)
+          ( rest
+              ++ [ (step + 1, coord')
+                 | coord' <- reachableFrom inp coord
+                 , not (coord' `Set.member` visited)
+                 ]
+          )
 
 ----------------------------------------------------------------------
 -- data model
