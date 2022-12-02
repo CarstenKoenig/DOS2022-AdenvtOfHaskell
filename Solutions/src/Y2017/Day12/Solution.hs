@@ -27,11 +27,12 @@ run = do
   putStrLn $ "YEAR " <> show yearNr <> "/ DAY " <> show dayNr
 
   input <- loadInput
+  let graph = createGraph input
 
-  let result1 = part1 input
+  let result1 = part1 graph
   putStrLn $ "\t Part 1: " ++ show result1
 
-  let result2 = part2 input
+  let result2 = part2 graph
   putStrLn $ "\t Part 2: " ++ show result2
 
   putStrLn "---\n"
@@ -39,14 +40,12 @@ run = do
 ----------------------------------------------------------------------
 -- solutions
 
-part1 :: Input -> Int
-part1 inp =
+part1 :: Graph -> Int
+part1 g =
   Set.size $ connectedGroupOf g 0
- where
-  g = createGraph inp
 
-part2 :: Input -> Int
-part2 _ = 0
+part2 :: Graph -> Int
+part2 = length . connectedGroups
 
 ----------------------------------------------------------------------
 -- data model
@@ -86,11 +85,21 @@ connectedGroupOf graph pId =
             shouldBeVisted = Set.difference reachable visited'
          in go visited' (Set.union rest shouldBeVisted)
 
-connectGroups :: Graph -> [IntSet]
-connectGroups graph = go allNodes
+connectedGroups :: Graph -> [IntSet]
+connectedGroups graph = go allNodes
  where
   go :: IntSet -> [IntSet]
-  go = undefined
+  go nodes =
+    case Set.minView nodes of
+      Nothing -> []
+      Just (point, rest) ->
+        let connected = connectedGroupOf graph point
+         in connected : go (Set.difference rest connected)
+  -- reicht - weil selbst wenn eine Id nur in
+  -- canComWith wäre würde sie hier irgendwo mit
+  -- in eine Komponente aufgenommen
+  -- ODER: ist ein Bidirektionaler Graph - sonst ist
+  -- der Input falsch (danke an den Teilnehmer Christopher)
   allNodes = Set.fromList (IntMap.keys graph)
 
 ----------------------------------------------------------------------
