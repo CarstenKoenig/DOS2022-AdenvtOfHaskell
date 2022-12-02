@@ -4,6 +4,7 @@
 module Y2015.Day1.Solution where
 
 import Data.Foldable (Foldable (foldl'))
+import Data.List (scanl')
 
 yearNr :: Int
 yearNr = 2015
@@ -55,12 +56,15 @@ move f Down = f - 1
 moves :: Input -> Floor
 moves = foldl' move start
 
--- >>> firstPosBasement  [Down] == 1
--- False
+floors :: Input -> [Floor]
+floors = scanl' move start
+
+-- >>> firstPosBasement [Down] == 1
+-- True
 -- >>> firstPosBasement [Up, Down, Up, Down, Down] == 5
--- False
+-- True
 firstPosBasement :: Input -> Int
-firstPosBasement inp = 1
+firstPosBasement = length . takeWhile (/= -1) . floors
 
 ----------------------------------------------------------------------
 -- load and parse input
