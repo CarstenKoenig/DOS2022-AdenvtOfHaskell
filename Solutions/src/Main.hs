@@ -7,4 +7,9 @@ import qualified Y2017.Day12.Solution as D12
 import qualified Y2017.Day24.Solution as D24
 
 main :: IO ()
-main = D24.run
+main = do
+   D1.run
+   D17.run
+   D13.run
+   D12.run
+   D24.run
